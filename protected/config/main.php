@@ -28,8 +28,8 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=yii_blog',
       'tablePrefix' => 'tbl_',
 			'emulatePrepare' => true,
-			'username' => 'yii',
-			'password' => 'weasel301',
+			'username' => '',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
