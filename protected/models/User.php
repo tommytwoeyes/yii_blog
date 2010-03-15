@@ -21,6 +21,16 @@ class User extends CActiveRecord
 		return parent::model($className);
 	}
 
+  public function validatePassword($password)
+  {
+    return $this->hashPassword($password, $this->salt) === $this->password;
+  }
+
+  public function hashPassword($password, $salt)
+  {
+    return md5($salt.$password);
+  }
+
 	/**
 	 * @return string the associated database table name
 	 */

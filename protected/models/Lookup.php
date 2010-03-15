@@ -11,6 +11,8 @@ class Lookup extends CActiveRecord
 	 * @var integer $position
 	 */
 
+   private static $_items = array();
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -19,6 +21,34 @@ class Lookup extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+  public static function item($type, $code)
+  {
+    if (!isset(self::$_items[$type]))
+      self::loadItems($type);
+    return isset(self::$_items[$type][$code]) ? self::$_items[$type][$code]: false;
+  }
+
+  public static function items($type)
+  {
+    if (!isset(self::$_items[$type]))
+      self::loadItems($type);
+    return self::$_items[$type];
+  }
+
+  private static function loadItems($type)
+  {
+    self::$_items[$type] = array();
+    $models = self::model()->findAll(array(
+      'condition'=>'type=:type',
+      'params'=>array(':type'=>$type),
+      'order'=>'position',
+    ));
+    foreach ($models as $model)
+    {
+      self::$_items[$type][$model->code] = $model->name;
+    }
+  }
 
 	/**
 	 * @return string the associated database table name

@@ -25,27 +25,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'status'); ?>
-		<?php echo CHtml::activeTextField($model,'status'); ?>
-		<?php echo CHtml::error($model,'status'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'create_time'); ?>
-		<?php echo CHtml::activeTextField($model,'create_time'); ?>
-		<?php echo CHtml::error($model,'create_time'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'update_time'); ?>
-		<?php echo CHtml::activeTextField($model,'update_time'); ?>
-		<?php echo CHtml::error($model,'update_time'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'author_id'); ?>
-		<?php echo CHtml::activeTextField($model,'author_id'); ?>
-		<?php echo CHtml::error($model,'author_id'); ?>
+		<?php echo CHtml::dropDownList($post, 'status', Lookup::items('PostStatus')); ?>
 	</div>
 
 	<div class="row buttons">
